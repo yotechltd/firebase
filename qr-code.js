@@ -1,9 +1,8 @@
 const QRCode = require("qrcode");
 const { createCanvas, loadImage } = require("canvas");
 const fs = require('fs');
-async function create(dataForQRcode, center_image, width, cwidth) {
+async function create(dataForQRcode, center_image, width, centerImagewidth) {
   const canvas = createCanvas(width, width);
-  fs.writeFileSync('canvas.jpg', canvas.toBuffer());
   QRCode.toCanvas(
     canvas,
     dataForQRcode,
@@ -18,23 +17,21 @@ async function create(dataForQRcode, center_image, width, cwidth) {
   );
 
   const ctx = canvas.getContext("2d");
-  const img = await loadImage('name.png');
   var width = canvas.width;
-  const center = (width - cwidth) / 2;
-  ctx.drawImage(img, center, center, cwidth, cwidth);
-  console.log(canvas.toBuffer());
-  fs.writeFileSync('done.png', canvas.toBuffer());
+  let img = await loadImage(center_image);
+  const center = (width - centerImagewidth) / 2;
+  ctx.drawImage(img, center, center, centerImagewidth, centerImagewidth);
+  return canvas;
 }
-value = fs.readFileSync('./asset/favicon.ico');
-fs.writeFileSync('fi.jpg',value);
+
 async function main() {
-  let secIm = fs.readFileSync('asset/favicon.ico');
-  console.log(secIm)
-  await create(
+  let centerImage = fs.readFileSync('asset/favicon.ico');
+  let value = await create(
     "./asseto",
-    secIm,
+    centerImage,
     1,
-    30
+    10
   );
+  fs.writeFileSync('done.jpg', value.toBuffer());
 }
 main();
