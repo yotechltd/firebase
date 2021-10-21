@@ -1,0 +1,4 @@
+{
+  "so": "http://api.weatherstack.com/forecast?access_key=3360e9cdb3d1f86aa4c37fc51672ff91&query=New York",
+  "newK":"const key = 'AIzaSyB3fzeCZKjCEOl74s33u5yUcFx5lRutehM'; AIzaSyB9WnvVn8B6d03-OTdM9l1yyoXVE9Ikqbs"
+}
